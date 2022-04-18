@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up Page</title>
+    <title>Signup Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+   
 
 
 </head>
 <body>
-<div class="container">
+<div class="container ">
 <img src="DU-logo.svg" height="150" width="250"  class="rounded mx-auto d-block" alt="DU logo">
     <div class="row">
         <?php
@@ -64,11 +65,11 @@
                     $error[]='Invalid username. Please enter lowercase letters without any space, digit or special symbols at the start.';
                 }
                 //if(!preg_match( "/^[A-Za-z-\.]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})(\.du\.ac\.bd)$/", $email))
-                if(!preg_match( "/^[A-Za-z-\.]+@+(du\.ac\.bd)$/", $eml))
-                {
-                    echo $eml;
-                    $error[]='Invalid email! Please enter your email address with du.ac.bd extention';
-                }
+                // if(!preg_match( "/^[A-Za-z-\.][0-9]+@[A-Za-z-\.]+(du\.ac\.bd)$/", $eml))
+                // {
+                //     echo $eml;
+                //     $error[]='Invalid email! Please enter your email address with du.ac.bd extention';
+                // }
                 if($passwordConfirm='')
                 {
                     $error[]= 'Please Confirm the password';
@@ -81,7 +82,7 @@
                 }
                 if(strlen($password)<5)
                 {
-                    $error[]= 'The password is only 6 character long';
+                    $error[]= 'The password is only 6 character long! make a strong password!';
                 }
                 if(strlen($password)>20)
                 {
@@ -108,8 +109,9 @@
                 if(!isset($error))
                 {
                     $date = date('Y-m-d');
-                    $options = array("cost"=>4);
-                    $password= password_hash($password, PASSWORD_BCRYPT, $options); 
+                    //$options = array("cost"=>4);
+                    //$password= password_hash($password, PASSWORD_BCRYPT, $options);
+                    $password= md5($password); 
 
                     $result=mysqli_query($db_conn, "INSERT INTO faculty_info values('','$fname', '$lname', '$username', '$email','$institute_department', '$password')");
 
@@ -138,13 +140,14 @@
 
 
             ?>
-        <div class="col-sm-4">
+        <div class="col-sm-4 d-flex justify-content-center text-center">
             <?php
             if(isset($done)){
             ?>
             <div class="successmsg">
                 <span style="font: size 100px;"> &#9989;</span><br>
-                You have successfully registered! <br><a href="login.php" style="color:#fff;">Login here...</a>
+                You have successfully registered!
+                <br><a href="login.php" >Login here...</a>
             </div>
             <?php
             }else{
@@ -178,16 +181,16 @@
                     </div>
                     <div class="form-group">
                         <label class="label_text">Password</label>
-                        <input type="text" class="form-control" name="password" required="">
+                        <input type="password" class="form-control" name="password" required="">
 
                     </div>
                     <div class="form-group">
                         <label class="label_text">Confirm Password</label>
-                        <input type="text" class="form-control" name="passwordConfirm" required="">
+                        <input type="password" class="form-control" name="passwordConfirm" required="">
 
                     </div>
                     <br>   
-                    <button type="submit" name="signup" class="btn btn-primary btn-group-lg form_btn">Sign Up</button>
+                    <button type="submit" name="signup" class="btn btn-primary  ">Sign Up</button>
                     <p> Have an account? <a href="login.php">Login</a></p>
                     <?php  } ?>
                 </form>
