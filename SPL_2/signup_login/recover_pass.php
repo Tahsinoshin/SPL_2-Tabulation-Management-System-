@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,33 +24,53 @@
 
             //require_once('../vendor/autoload.php');
 
+            require 'db.php';
+
 
             
 
-            if (isset($_POST['submit_email']) &&  $_POST['email']) {
+             if (isset($_POST['password-reset-token']) &&  $_POST['email']) {
 
-                 $email=$_POST['email'];
-                // $con=mysqli_connect('localhost', 'root', '');
-                // mysqli_select_db($con, 'system_database');
+                  $email=$_POST['email'];
+                 // $con=mysqli_connect('localhost', 'root', '');
+                 // mysqli_select_db($con, 'system_database');
                 // $select = mysqli_query($con,"select email,password from faculty_info  where email='$email'");
                 // if (mysqli_num_rows($select) == 1) {
                 //     while ($row = mysqli_fetch_array($select)) {
-                //         $email = ($row['email']);
-                //         $options = array("cost"=>4);
-                //         $pass=($row['password']);
-                //         $pass = password_hash($pass, PASSWORD_BCRYPT, $options); //($row['password']);
-                //     }
-                     $link = "<a href='http://localhost/SPL_2/signup_login/reset.php?key=" . $email . "'>Click To Reset password</a>";
-                //     // require 'D:\xampp\composer\vendor\autoload.php';
-                    // require 'D:\xampp\composer\vendor\phpmailer\phpmailer\src\PHPMailer.php';
+                 //         $email = ($row['email']);
+                 //         $options = array("cost"=>4);
+                 //         $pass=($row['password']);                 //         $pass = password_hash($pass, PASSWORD_BCRYPT, $options); //($row['password']);
+                 //     }
 
-// require("/home/site/libs/PHPMailer-master/src/PHPMailer.php");
-// require("/home/site/libs/PHPMailer-master/src/SMTP.php");
-            
-//require("\home\site\libs\PHPMailer-master\src\PHPMailer.php");
-                    require'D:\xampp\composer\vendor\phpmailer\phpmailer\src\SMTP.php';
-                    //$mail = new PHPMailer(true);
-                    $mail = new PHPMailer();
+
+                 $result = mysqli_query($conn,"SELECT * FROM faculty_info WHERE email='$email'");
+ 
+                $row= mysqli_fetch_array($result);
+                
+                 if($row)
+                {
+                    
+                     $token = md5($email).rand(10,9999);
+                
+                     $expFormat = mktime(
+                     date("H"), date("i"), date("s"), date("m") ,date("d")+1, date("Y")
+                     );
+                
+                     $expDate = date("Y-m-d H:i:s",$expFormat);
+
+                     $update = mysqli_query($conn,"UPDATE faculty_info set  password='" . $password . "', reset_link_token='" . $token . "' ,exp_date='" . $expDate . "' WHERE email='" . $email . "'");
+
+                      $link = "<a href='http://localhost/SPL_2/signup_login/reset.php?key=" . $email ."&password-reset-token=".$token. "'>Click To Reset password</a>";
+                 //     // require 'D:\xampp\composer\vendor\autoload.php';
+                     // require 'D:\xampp\composer\vendor\phpmailer\phpmailer\src\PHPMailer.php';
+
+                    // require("/home/site/libs/PHPMailer-master/src/PHPMailer.php");
+                    // require("/home/site/libs/PHPMailer-master/src/SMTP.php");
+                                
+                    //require("\home\site\libs\PHPMailer-master\src\PHPMailer.php");
+                     require'D:\xampp\composer\vendor\phpmailer\phpmailer\src\SMTP.php';
+                     //$mail = new PHPMailer(true);
+                     $mail = new PHPMailer();
                     $mail->SMTPDebug = 2; 
                     $mail->IsSMTP();
                     // enable SMTP authentication
@@ -58,7 +78,7 @@
                     // GMAIL username
                     $mail->Username = "systemmailer123@gmail.com";
                     // GMAIL password
-                    $mail->Password = "sys!@#123";
+                    $mail->Password = "Sys123!@#";
                     $mail->SMTPSecure = "ssl";
                     // sets GMAIL as the SMTP server
                     $mail->Host = "smtp.gmail.com";
@@ -75,22 +95,35 @@
                     } else {
                         echo "Mail Error - >" . $mail->ErrorInfo;
                     }
-                }   
+                }
+                else{
+                    echo "Invalid Email Address! Go back";
+                  }
+            }   
             
             ?>
 
-
-            <form method="post" action=" ">
-                <div class="mb-3">
-                    <p>Enter Email Address To Send Password Link</p>
-                    <input type="text" name="email">
-                </div>
-                <button type="submit"  name="submit_email" class="btn btn-primary">Submit</button>
+        
+            <form action=" " method="post">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                        <input type="submit" name="password-reset-token" class="btn btn-primary">
             </form>
+          
         </div>
     </div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-</html>
+</html> 
+
+
+
+
+
+
+ 

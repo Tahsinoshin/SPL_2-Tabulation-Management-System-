@@ -10,7 +10,7 @@
  if(isset($_POST['faculty_login'])){
     session_start();
     extract($_POST);
-    //echo "dhukse";
+    //echo "works";
 
     $con = mysqli_connect('localhost','root','', 'system_database');
 

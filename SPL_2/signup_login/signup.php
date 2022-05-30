@@ -13,9 +13,9 @@
 
 </head>
 <body>
-<div class="container ">
-<img src="DU-logo.svg" height="150" width="250"  class="rounded mx-auto d-block" alt="DU logo">
-    <div class="row">
+<div class="container " >
+<img src="DU-logo.svg" height="100" width="200"  class="rounded mx-auto d-block" alt="DU logo">
+    <div class="row" >
         <?php
             if(isset($_POST['signup']))
             {
@@ -140,19 +140,19 @@
 
 
             ?>
-        <div class="col-sm-4 d-flex justify-content-center text-center">
+        <div class="col-sm-4 d-flex justify-content-center text-center" >
             <?php
             if(isset($done)){
             ?>
             <div class="successmsg">
                 <span style="font: size 100px;"> &#9989;</span><br>
                 You have successfully registered!
-                <br><a href="login.php" >Login here...</a>
+                <br><p style="font-size:20px"><a href="login.php" >Login here...</a></p>
             </div>
             <?php
             }else{
             ?>
-            <div class="signup_form">
+            <div class="signup_form w-100 p-3" >
                 <form action="" method="POST" >
                     <div class="form-group">
                         <label class="label_text"> First Name</label>

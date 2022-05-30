@@ -13,20 +13,26 @@
 
 <body>
    <div class="container">
-      <img src="DU-logo.svg" height="150" width="250" class="rounded mx-auto d-block" alt="DU logo">
+      <img src="DU-logo.svg" height="100" width="200" class="rounded mx-auto d-block" alt="DU logo">
       <div class="row d-flex justify-content-center">
          <div class="col-sm-4 d-flex justify-content-center text-center">
             <div class="admin_form">
                <form action="admin_login_process.php" method="POST">
                   <div class="mb-3">
                      <div class="form-group">
-                        <label class="label_text"> Username</label>
-                        <input type="text" class="form-control" name="username" value="" required="">
+                        <label class="label_text"> Admin ID</label>
+                        <input type="text" class="form-control" name="admin_id" value="" required="">
 
                      </div>
                      <div class="form-group">
                         <label class="label_text">Password</label>
                         <input type="password" class="form-control" name="password" required="">
+
+                     </div>
+                     <div class="form-group">
+                        <label class="form-check-label text-white" for="exampleCheck1">Keep me logged in</label>
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="check">
+                        
 
                      </div>
                   </div>

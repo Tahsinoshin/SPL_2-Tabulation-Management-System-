@@ -41,12 +41,12 @@
 <body>
 
     <div class="container">
-        <img src="DU-logo.svg" height="150" width="250" class="rounded mx-auto d-block" alt="DU logo">
+    <img src="DU-logo.svg" height="100" width="200"  class="rounded mx-auto d-block" alt="DU logo">
         <div class="row d-flex justify-content-center">
             <div class="col-sm-4 d-flex justify-content-center">
-                 <div class="mb-3 login_form"> 
+                 <div class="mb-3 login_form w-100 p-3"> 
                     <label for="account">
-                        <h2 style="font-face:'Arial', font-weight:'bold'">Account;">Choose Account Type:</h2>
+                        <h2 style="font-face:'Arial', font-weight:'bold'">Choose Account Type:</h2>
                     </label>
                     <SELECT id="account" NAME="section" onChange="SelectRedirect();">
                         <Option value="">Select account</option>

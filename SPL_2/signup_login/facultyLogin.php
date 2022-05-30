@@ -13,7 +13,7 @@
 
 <body>
     <div class="container">
-        <img src="DU-logo.svg" height="150" width="250" class="rounded mx-auto d-block" alt="DU logo">
+        <img src="DU-logo.svg" height="100" width="200" class="rounded mx-auto d-block" alt="DU logo">
         <div class="row d-flex justify-content-center">
             <div class="col-sm-4 d-flex justify-content-center text-center">
                 <div class="faculty_form">
