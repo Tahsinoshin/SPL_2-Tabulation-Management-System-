@@ -28,7 +28,7 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="fetch_data.php" method="POST">
+                        <form action="fetchData2.php" method="POST">
 
                             <select name="export_file_type" class="form-control">
                                 <option value="xlsx">XLSX</option>

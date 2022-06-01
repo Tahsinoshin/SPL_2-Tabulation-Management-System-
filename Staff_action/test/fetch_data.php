@@ -37,17 +37,48 @@ if(isset($_POST['filename'])){
 //   $spreadsheet = new Spreadsheet();
 //   $sheet = $spreadsheet->getActiveSheet();
 
+require_once '../Classes/PHPExcel/IOFactory.php';
+
+
+/** PHPExcel */require_once '../Classes/PHPExcel.php';
+
+$sheet = PHPExcel_IOFactory::createReader('Excel2007');
+$sheet= $sheet->load('$fileName');
+$sheet->setLoadAllSheets();
+$sheet->setActiveSheetIndex(0);
+
   if(mysqli_num_rows($query_run) > 0)
   {
-      $spreadsheet = new Spreadsheet();
-      $sheet = $spreadsheet->getActiveSheet();
+    //$rowCount=mysqli_num_rows($query_run);
+      //$spreadsheet = new Spreadsheet();
+      //$sheet = $spreadsheet->getActiveSheet();
+      $count=27;
+
+      while($row = mysqli_fetch_array($query_run)){
+
+        
+
+        // echo  $row['hall'] ;
+        // echo  $row['regno'] ;
+        // echo  $row['session'] ;
+        $sheet->setCellValue('A'.$count, $row['hall']);
+        $sheet->setCellValue('B'.$count, $row['regno']);
+        $sheet->setCellValue('C'.$count, $row['session']);
+        $sheet->setCellValue('D'.$count, $row['classroll']);
+        $sheet->setCellValue('E'.$count, $row['examroll']);
+        $sheet->setCellValue('F'.$count, $row['name']);
+
+        $count++;
+      }
+
+
 
 
 
 //$excel2 = PHPExcel_IOFactory::createReader('Excel2007');
 //$excel2 = $excel2->load('$fileName'); // Empty Sheet
 
-$sheet->setTitle('$fileName');
+//$sheet->setTitle('$fileName');
 //$sheet = $spreadsheet->getActiveSheet();
 //$sheet= $spreadsheet->getActiveSheet();
 
@@ -55,24 +86,27 @@ $sheet->setTitle('$fileName');
     //   $sheet->setCellValue('B1', 'roll');
     //   $sheet->setCellValue('C1', 'batch');
 
-      $rowCount = 2;
+     // $rowCount = 2;
 
-      while ($rowCount!=21){
+     
+      // while ($rowCount!=21){
 
-        foreach($query_run as $data)
-      {
-          $sheet->setCellValue('A27:A47'.$rowCount, $data['hall']);
-          $sheet->setCellValue('B27:B47'.$rowCount, $data['regno']);
-          $sheet->setCellValue('C27:C47'.$rowCount, $data['session']);
-          $sheet->setCellValue('D27:D47'.$rowCount, $data['classroll']);
-          $sheet->setCellValue('E27:E47'.$rowCount, $data['examroll']);
-          $sheet->setCellValue('F27:F47'.$rowCount, $data['name']);
+      // //   foreach($query_run as $data)
+      // // {
+      // //     $sheet->setCellValue('A27:A47', $data['hall']);
+      // //     $sheet->setCellValue('B27:B47', $data['regno']);
+      // //     $sheet->setCellValue('C27:C47', $data['session']);
+      // //     $sheet->setCellValue('D27:D47', $data['classroll']);
+      // //     $sheet->setCellValue('E27:E47', $data['examroll']);
+      // //     $sheet->setCellValue('F27:F47', $data['name']);
           
          
-      }
-      $rowCount++;
+      // // }
 
-      }
+     
+      // $rowCount++;
+
+      // }
       
 
     //   if($file_ext_name == 'xlsx')
@@ -91,10 +125,13 @@ $sheet->setTitle('$fileName');
     //       $final_filename = $fileName.'.csv';
     //   }
 
-      $writer->save($fileName);
-      header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-      header('Content-Disposition: attactment; filename="'.urlencode($fileName).'"');
+      // $writer->save($fileName);
+      // header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      // header('Content-Disposition: attactment; filename="'.urlencode($fileName).'"');
      // $writer->save('php://output');
+
+     $objWriter = PHPExcel_IOFactory::createWriter($excel2, 'Excel2007');
+     $objWriter->save('$fileName');
 
   }
   else
