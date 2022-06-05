@@ -11,7 +11,7 @@ if(isset($_POST['export_excel_btn'])){
         //$sql ="SELECT filepath FROM filedetails WHERE filename=$FileName";
         
 
-        $query ="SELECT filepath FROM filedetails WHERE filename='$FileName'";
+        $query ="SELECT filepath FROM filedetails WHERE filename='$FileName' ";
         $result = mysqli_query($con, $query);
         //echo $result;
 

@@ -23,26 +23,33 @@ if(isset($_POST['replace_by_staff']))
 
         $db_conn= mysqli_connect($dbHost,$dbUserName,$dbPassword, $dbName);
 
+
+        //$slash= "/";
+
         if($_POST['program'])
         {
             $program= $_POST['program']."/";
+            strtolower($program);
             $target.=$program;
         }
 
         if($_POST['year_sem'])
         {
             $year_sem= $_POST['year_sem']."/";
+            strtolower($year_sem);
             $target.=$year_sem;
 
 
             if(isset($_POST['year']))
             {
                 $year= $_POST['year']."/";
+                strtolower($year);
                 $target.=$year;
             }
             else if(isset($_POST['semester']))
             {
                 $semester= $_POST['semester']."/";
+                strtolower($semester);
                 $target.=$semester;
             }
         }
@@ -50,12 +57,13 @@ if(isset($_POST['replace_by_staff']))
         if($_POST['course_type'])
         {
             $course_type= $_POST['course_type']."/";
+            strtolower($course_type);
             $target.=$course_type;
         }
         $target=$target."/"; 
 
 
-        echo $target;
+        //echo $target;
 
 
 

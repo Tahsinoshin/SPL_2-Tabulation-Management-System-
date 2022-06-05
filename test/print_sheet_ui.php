@@ -51,12 +51,12 @@
                           
                         ?>
 
-<form method="post" action="replace_sheet.php " enctype="multipart/form-data">
+<form method="post" action="print_sheet.php " enctype="multipart/form-data">
                         select year/semester system:
                         <select name="year_sem"  id="year_sem" required>
                             <option value="">---  please select one ---</option>
-                            <option value="year"> Year</option>
-                            <option value="semester"> Semester</option>
+                            <option value="year"> year</option>
+                            <option value="semester"> semester</option>
 
                         </select> 
                         <br>
@@ -78,7 +78,7 @@
                         </script>
 
 Department :  
-                        <select  name='dept[]' required >  
+                        <select  name='dept' required >  
                         <option value="">---  please select department ---</option>  
                         
                         
@@ -103,7 +103,7 @@ Department :
 
                         <br>
                         Program:
-                        <select  name='program[]' required>  
+                        <select  name='program' required>  
                         <option value="">---  please select a program---</option>  
                         
                         
@@ -128,7 +128,7 @@ Department :
 
                         <br>
                         Course type:
-                        <select  name='course_type[]' required>  
+                        <select  name='course_type' required>  
                         <option value="">---  please select course type ---</option>  
                         
                         <?php 
@@ -152,15 +152,19 @@ Department :
                         <br>
                         
 
-                    <p>Existing File :</p>
+                    <p>Enter File name :</p>
                     <input type="text" name="Filename" required>
-                    <p>new File :</p>
-                    <input type="file" name="NewFilename"  required> 
 
-                    <p>Description</p>
-                    <textarea rows="10" cols="35" name="Description"></textarea>
+                    <!-- <p>New file name :</p>
+                    <input type="text" name="newFile" required>
+
+                    <p> Enter new File :</p>
+                    <input type="file" name="browseFile" required>  -->
+
+                    <!-- <p>Description</p>
+                    <textarea rows="10" cols="35" name="Description"></textarea> -->
                     <br/>
-                    <input TYPE="submit" name="replace_by_faculty" value="submit"/>
+                    <input TYPE="submit" name="print_by_staff" value="submit"/>
 
                     </form>
                         

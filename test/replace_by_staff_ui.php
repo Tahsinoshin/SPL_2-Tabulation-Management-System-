@@ -55,8 +55,8 @@
                         select year/semester system:
                         <select name="year_sem"  id="year_sem" required>
                             <option value="">---  please select one ---</option>
-                            <option value="year"> Year</option>
-                            <option value="semester"> Semester</option>
+                            <option value="year"> year</option>
+                            <option value="semester"> semester</option>
 
                         </select> 
                         <br>
@@ -152,10 +152,14 @@ Department :
                         <br>
                         
 
-                    <p>Existing File :</p>
+                    <p>Existing File name :</p>
                     <input type="text" name="Filename" required>
-                    <p>new File :</p>
-                    <input type="file" name="NewFilename"  required> 
+
+                    <p>New file name :</p>
+                    <input type="text" name="newFile" required>
+
+                    <p> Enter new File :</p>
+                    <input type="file" name="browseFile" required> 
 
                     <p>Description</p>
                     <textarea rows="10" cols="35" name="Description"></textarea>

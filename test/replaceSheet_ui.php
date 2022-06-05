@@ -164,7 +164,7 @@ Department :
                     <p>Description</p>
                     <textarea rows="10" cols="35" name="Description"></textarea>
                     <br/>
-                    <input TYPE="submit" name="replace" value="Submit"/>
+                    <input TYPE="submit" name="replace_by_staff" value="Submit"/>
 
                     </form>
                         

@@ -7,7 +7,7 @@ $errorFlag=0;
 
 // include "../signup_login/test_db.php";
 
-if(isset($_POST['replace']))
+if(isset($_POST['replace_by_staff']))
     {
         //include ".././signup_login/test_db.php"; 
 
