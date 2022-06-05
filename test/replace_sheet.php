@@ -12,12 +12,15 @@ if(isset($_POST['replace']))
         //include ".././signup_login/test_db.php"; 
 
         session_start();
-$dbHost="localhost";
-$dbName="test_database";
-$dbUserName= "root";
-$dbPassword="";
+        $dbHost="localhost";
+        $dbName="test_database";
+        $dbUserName= "root";
+        $dbPassword="";
 
-$db_conn= mysqli_connect($dbHost,$dbUserName,$dbPassword, $dbName);
+        $db_conn= mysqli_connect($dbHost,$dbUserName,$dbPassword, $dbName);
+
+
+        
 
         if($_POST['Filename'] == ""  )
         
