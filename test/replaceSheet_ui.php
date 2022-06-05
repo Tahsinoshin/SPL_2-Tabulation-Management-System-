@@ -51,7 +51,7 @@
                           
                         ?>
 
-<form method="post" action="replace_sheet.php " enctype="multipart/form-data">
+            <form method="post" action="replace_sheet.php " enctype="multipart/form-data">
                         select year/semester system:
                         <select name="year_sem"  id="year_sem" required>
                             <option value="">---  please select one ---</option>
@@ -67,18 +67,18 @@
                               var opt=$("option:selected").val();
                               if(opt=='year')
                                {
-                                 document.getElementById("yearOptions").innerHTML ="<select><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option><option>5th Year</option><option>5th Year</option>select>";
+                                 document.getElementById("yearOptions").innerHTML ="<select name='year' ><option>please select a option</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option><option>5th Year</option><option>5th Year</option>select>";
                                }
                                if(opt=='semester')
                                {
-                                 document.getElementById("yearOptions").innerHTML ="<select><option>1st Semester</option><option>2nd Semester</option><option>3rd Semester</option><option>4th Semester</option><option>5th Semester</option><option>6th Semester</option><option>7th Semester</option><option>8th Semester</option>select>";
+                                 document.getElementById("yearOptions").innerHTML ="<select name='semester'><option>please select a option</option><option>1st Semester</option><option>2nd Semester</option><option>3rd Semester</option><option>4th Semester</option><option>5th Semester</option><option>6th Semester</option><option>7th Semester</option><option>8th Semester</option>select>";
                                }
                                                                });
                                                             });
                         </script>
 
 Department :  
-                        <select  name='dept[]' required >  
+                        <select  name='department' required >  
                         <option value="">---  please select department ---</option>  
                         
                         
@@ -93,7 +93,7 @@ Department :
                         while($row_list=mysqli_fetch_assoc($list)){   
                         ?>  
                             
-                        <option value="<?php echo $row_list['id']; ?>">  
+                        <option value="<?php //echo $row_list['id']; ?>">  
                         <?php echo $row_list['department'];?>  
                         </option>  
                         <?php
@@ -103,7 +103,7 @@ Department :
 
                         <br>
                         Program:
-                        <select  name='program[]' required>  
+                        <select  name='program' required>  
                         <option value="">---  please select a program---</option>  
                         
                         
@@ -118,7 +118,7 @@ Department :
                         while($row_list=mysqli_fetch_assoc($list)){ 
                         ?>  
                             
-                        <option value="<?php echo $row_list['id']; ?>">  
+                        <option value="<?php //echo $row_list['id']; ?>">  
                         <?php echo $row_list['program'];?>  
                         </option>  
                         <?php
@@ -128,7 +128,7 @@ Department :
 
                         <br>
                         Course type:
-                        <select  name='course_type[]' required>  
+                        <select  name='course_type' required>  
                         <option value="">---  please select course type ---</option>  
                         
                         <?php 
@@ -141,7 +141,7 @@ Department :
                         while($row_list=mysqli_fetch_assoc($list)){ 
                           
                         ?>  
-                        <option value="<?php echo $row_list['id']; ?>">  
+                        <option value="<?php //echo $row_list['id']; ?>">  
                         <?php echo $row_list['course_type'];?>  
                         </option>  
                         
@@ -152,10 +152,14 @@ Department :
                         <br>
                         
 
-                    <p>Existing File :</p>
-                    <input type="text" name="Filename">
+                    <p>Existing File name :</p>
+                    <input type="text" name="oldFile" required>
+
+                    <p>New file name :</p>
+                    <input type="text" name="newFile" required>
+
                     <p>new File :</p>
-                    <input type="file" name="NewFilename"> 
+                    <input type="file" name="browseFile" required> 
 
                     <p>Description</p>
                     <textarea rows="10" cols="35" name="Description"></textarea>

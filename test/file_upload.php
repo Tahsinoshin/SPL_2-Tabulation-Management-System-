@@ -53,7 +53,7 @@
 		$fileTarget = $target.$fileName;	
 		$tempFileName = $_FILES["Filename"]["tmp_name"];
 		$fileDescription = $_POST['Description'];	
-		$result = move_uploaded_file($tempFileName,$fileTarget);
+		$result = move_uploaded_file($tempFileName,$fileTarget); 
 		/*
 		*	If file was successfully uploaded in the destination folder
 		*/ 
