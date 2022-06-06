@@ -51,9 +51,13 @@
                           
                         ?>
 
-                    <form method="post" action="mark_as_final.php " enctype="multipart/form-data">
+                    <form method="post" action="upload_by_faculty.php " enctype="multipart/form-data">
                         <label>Please enter your email address</label>
-                        <input type="text" name="email"  required>
+                        <input type="email" name="email" required>
+
+                        <label>Please enter the filename you want to upload</label>
+                        <input type="text" name="file" required>
+
                         <label>Select course type</label>
 
                         <select name="course_type" id="course_type" required>
@@ -61,7 +65,7 @@
                             <option value="retake">retake</option>
                         </select>
 
-                        <input type='submit' name='mark_final' value='submit'>
+                        <input type='submit' name='upload_marks' value='submit'>
                         
 
                         

@@ -21,39 +21,40 @@
                 ?>
 
                     <?php 
-                        //    $dbHost="localhost";
-                        //    $dbName="test_database";
-                        //    $dbUserName= "root";
-                        //    $dbPassword="";
+                           $dbHost="localhost";
+                           $dbName="test_database";
+                           $dbUserName= "root";
+                           $dbPassword="";
                            
-                        //    $db= mysqli_connect($dbHost,$dbUserName,$dbPassword, $dbName);
+                           $db= mysqli_connect($dbHost,$dbUserName,$dbPassword, $dbName);
                            
-                        //    $tempQuery='SELECT * FROM `modified_files` ORDER BY id ASC';
+                           $tempQuery='SELECT * FROM `modified_files` ORDER BY id ASC';
                                 
-                        //    $list=mysqli_query($db,$tempQuery);
+                           $list=mysqli_query($db,$tempQuery);
                             
                            
-                        // //   While( $row_list=mysqli_fetch_assoc($list)){
+                        //   While( $row_list=mysqli_fetch_assoc($list)){
                            
 
-                        // //   }
+                        //   }
 
                            
-                        //     if(mysqli_num_rows($list) == 0)
-                        //        {
-                        //            $errorFlag++;
-                        //            $error=$error."file does not exist!";
+                            if(mysqli_num_rows($list) == 0)
+                               {
+                                   $errorFlag++;
+                                   $error=$error."file does not exist!";
                                   
-                        //            echo $error;
+                                   echo $error;
                                    
-                        //        }
+                               }
                         
                           
                         ?>
 
-                    <form method="post" action="mark_as_final.php " enctype="multipart/form-data">
+                    <form method="post" action="download_by_faculty.php " enctype="multipart/form-data">
                         <label>Please enter your email address</label>
-                        <input type="text" name="email"  required>
+                        <input type="email" name="email" required>
+
                         <label>Select course type</label>
 
                         <select name="course_type" id="course_type" required>
@@ -61,7 +62,7 @@
                             <option value="retake">retake</option>
                         </select>
 
-                        <input type='submit' name='mark_final' value='submit'>
+                        <input type='submit' name='download_by_faculty' value='submit'>
                         
 
                         

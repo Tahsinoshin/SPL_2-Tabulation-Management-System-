@@ -9,6 +9,8 @@ $errorFlag=0;
 
 if(isset($_POST['email']))
 {
+    session_start();
+    
     $email= $_POST['email'];
 
         $dbHost="localhost";
@@ -18,21 +20,15 @@ if(isset($_POST['email']))
 
         $db_conn= mysqli_connect($dbHost,$dbUserName,$dbPassword, $dbName);
 
-        
+        $query="SELECT * FROM du_faculty_db WHERE faculty_email='$email'";
 
+        $faculty_query=mysqli_query($db_conn,$query);
 
-        $DBHost="localhost";
-        $DBName="system_database";
-        $DBUserName= "root";
-        $DBPassword="";
-
-        $conn = mysql_connect($DBHost,$DBName,$DBUserName,$DBPassword);
-        // another database connection
 
         
-        if(mysqli_num_rows($temp) == 1)
+        if(mysqli_num_rows($faculty_query) == 1)
         {
-              session_start();
+            
                //$target = "D:/xampp/htdocs/SPL_2/Staff_action/test/files/blank/";
                 // $target = "D:/xampp/htdocs/SPL_2/Staff_action/test/files/marked/";
                 // $target = "D:/xampp/htdocs/SPL_2/Staff_action/test/files/restricted/";
@@ -50,9 +46,11 @@ if(isset($_POST['email']))
               {
                   $course_type= $_POST['course_type'];
 
-                  $tempQuery='SELECT * FROM `modified_files` WHERE faculty_email="'.$email.'" && ".course_type="'.$course_type;
+                  $tempQuery="SELECT * FROM `modified_files` WHERE faculty_email='$email' && course_type='$course_type'";
       
                     $temp=mysqli_query($db_conn,$tempQuery);
+
+                    echo mysqli_num_rows($temp);
 
                     $output=mysqli_fetch_assoc($temp);
 
@@ -60,14 +58,18 @@ if(isset($_POST['email']))
                     $filename=$output['filename'];
 
                     $target= str_replace("marked","restricted",$filepath);
-                    $tempFileName = $_FILES[$filename]['tmp_name'];
+
+                    $target;
+                    //$tempFileName = $_FILES[$filename]['tmp_name'];
 
 
                     
 
-                    $result = move_uploaded_file($tempFileName,$target);
+                    $result = move_uploaded_file($filepath,$target);
 
-                    if($result)
+                    echo $result;
+
+                    if($result==1)
                     {
                         $query="
                         UPDATE `modified_files`
@@ -80,9 +82,10 @@ if(isset($_POST['email']))
 
                         echo "marked final!";
                     }
-                    else {			
-                        echo "Sorry !!! There was an error in uploading your file";			
-                    }
+                    // else {			
+                    //     echo("Error description: " . mysqli_error($db_conn));
+			
+                    // }
                     mysqli_close($db_conn);
               }
 
