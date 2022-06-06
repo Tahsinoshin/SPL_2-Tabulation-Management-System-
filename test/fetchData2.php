@@ -21,14 +21,18 @@ if(isset($_POST['filename'])){
     $con = mysqli_connect('localhost','root','','test_database');
 
     //$file_ext_name = $_POST['export_file_type'];
-    $fileName = $_POST['filename'];
+    //$fileName = $_POST['filename'];
+
+    $target = "D:/xampp/htdocs/SPL_2/Staff_action/test/files/blank/honors/year/1st/retake/PhysicsHonors1stRetake.xlsx";
 
     $all_data = "SELECT hall, regno, session, classroll, examroll, name FROM student_info ";
     $query_run = mysqli_query($con, $all_data);
 
-   // $objPHPExcel = PHPExcel_IOFactory::load($fileName);
+   //// $objPHPExcel = PHPExcel_IOFactory::load($fileName);
 
-   $objPHPExcel = \PhpOffice\PhpSpreadsheet\IOFactory::load($fileName);
+   //$objPHPExcel = \PhpOffice\PhpSpreadsheet\IOFactory::load($fileName);
+
+   $objPHPExcel = \PhpOffice\PhpSpreadsheet\IOFactory::load($target);
    // $objPHPExcel = $objPHPExcel->getActiveSheet();
 
   // $objPHPExcel = $objPHPExcel->getSheetByName($fileName);
@@ -66,9 +70,10 @@ if(isset($_POST['filename'])){
 
 
     $objWriter = new Xlsx($objPHPExcel);
-    $objWriter->save($fileName);
+    //$objWriter->save($fileName);
+    $objWriter->save($target);
 
-   // $writer = new Xlsx($spreadsheet); 
+   //// $writer = new Xlsx($spreadsheet); 
   
 // Save .xlsx file to the files directory 
     //$writer->save('files/demo.xlsx'); 

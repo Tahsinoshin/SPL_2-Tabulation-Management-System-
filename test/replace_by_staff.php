@@ -1,8 +1,11 @@
 <?php
+session_start();
 
 $sucess="";
 $error="";
 $errorFlag=0;
+
+
 
 
 // include "../signup_login/test_db.php";
@@ -11,7 +14,9 @@ if(isset($_POST['replace_by_staff']))
     {
         //include ".././signup_login/test_db.php"; 
 
-        session_start();
+      echo "works here";
+
+        
 
         $target = "D:/xampp/htdocs/SPL_2/Staff_action/test/files/blank/";
 
@@ -60,10 +65,10 @@ if(isset($_POST['replace_by_staff']))
             strtolower($course_type);
             $target.=$course_type;
         }
-        $target=$target."/"; 
+        //$target=$target; 
 
 
-        //echo $target;
+        echo $target;
 
 
 
@@ -71,42 +76,18 @@ if(isset($_POST['replace_by_staff']))
 
         
 
-        if($_POST['Filename'] == ""  )
-        
-        {
-            $errorFlag++;
-            $error=$error."You need to provide a valid filename.<br>";
 
-        }
+       // $Filename=mysqli_real_escape_string($db_conn,$_POST['Filename']);
+       $Filename= $_POST['Filename'];
 
+       echo $Filename;
 
-
-        //echo $_POST['Filename'];
-
-       // $NewFilename= $_POST['NewFilename'];
-
-        // if($_POST['NewFilename'] == ""  )
-        
-        // {
-        //     $errorFlag++;
-        //     $error=$error."You need to provide a valid filename.<br>";
-
-        // }
-
-        // if($_POST['Filename'] == $_POST['NewFilename'])
-        // {
-        //     $errorFlag++;
-        //     $error=$error."You need to provide a valid filename.<br>";
-
-        // }
-
-
-        $Filename=mysqli_real_escape_string($db_conn,$_POST['Filename']);
-
-        $NewfileName = $_FILES['NewFilename']['name'];
+        $NewfileName = $_FILES['browseFile']['name'];
 
         
         $tempQuery='SELECT * FROM `filedetails` WHERE filename="'.$Filename.'"';
+
+
       
         $temp=mysqli_query($db_conn,$tempQuery);
         
@@ -114,6 +95,8 @@ if(isset($_POST['replace_by_staff']))
         {
               $errorFlag++;
               $error=$error."file does not exist!";
+
+              echo $error;
               
         }
 
@@ -122,38 +105,24 @@ if(isset($_POST['replace_by_staff']))
 
 
 
-        if($errorFlag == 0)
+        else
 
         {
-            // $query="
-            // UPDATE `filedetails`
-            // SET filename='$NewFilename'
-            // WHERE filename='$Filename';
             
-            // ";
-
-            // $result=mysqli_query($db_conn,$query);
-
-            // if($result)
-            // {
-            //     $sucess=$sucess."The password reset has been successful.<br>";
-
-            //     echo $sucess;
-            // }
-            
+           echo $target; 
         //$target = "D:/xampp/htdocs/SPL_2/Staff_action/test/files/";	
         $ex_file= $target.$Filename;	
 		$fileTarget = $target.$NewfileName;	
-		$tempFileName = $_FILES["NewFilename"]["tmp_name"];
+		$tempFileName = $_FILES["browseFile"]["tmp_name"];
 		$fileDescription = $_POST['Description'];	
 
 
         //delete the old file
 
         if (unlink($ex_file)) {
-            echo 'The file ' . $ex_file . ' was deleted successfully!';
+            echo 'The file ' . $Filename . ' was deleted successfully!';
         } else {
-            echo  $filename."Doesn't exist such file!" ;
+            echo  $Filename."Doesn't exist such file!" ;
         }
 
 

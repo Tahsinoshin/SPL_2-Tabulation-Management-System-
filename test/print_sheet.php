@@ -97,7 +97,7 @@ if(isset($_POST['print_by_staff']))
         $data = mysqli_fetch_assoc($result); 
         $FilePaths= $data['filepath'];
 
-        echo $FilePaths;
+        //echo $FilePaths;
         
 
         function download_file( $fullPath )
